@@ -13,13 +13,15 @@ public class MovieTest
     {
         Movie movie1 = new MovieFixture().build();
         assertThat(movie1.getTitle(), is("Death Star"));
+        assertThat(movie1.getDirector(), is("Joe Bloggs"));
         assertThat(movie1.getRelease(), is(1977));
-        assertThat(movie1.getUri(), is("http://s3/MovieBucket/DeathStar.jpg"));
+        assertThat(movie1.getPosterImageFilename(), is("http://s3/MovieBucket/DeathStar.jpg"));
 
-        Movie movie2 = new Movie("Star Trek", 1974, null);
+        Movie movie2 = new Movie("Star Trek", 1974, "Gene Roddenberry", null);
         assertThat(movie2.getTitle(), is("Star Trek"));
+        assertThat(movie2.getDirector(), is("Gene Roddenberry"));
         assertThat(movie2.getRelease(), is(1974));
-        assertThat(movie2.getUri(), nullValue());
+        assertThat(movie2.getPosterImageFilename(), nullValue());
     }
 
     @Test
@@ -38,7 +40,8 @@ public class MovieTest
         Movie movie1 = new MovieFixture().withRelease(1977).build();
         Movie movie2 = new MovieFixture().withRelease(1978).build();
         Movie movie3 = new MovieFixture().withTitle("Star Trek").build();
-        Movie movie4 = new Movie("Star Wars", 1977, "");
+        Movie movie4 = new Movie("Star Wars", 1977, "George Lucas", "");
+        Movie movie5 = new MovieFixture().withDirector("George Lucas").build();
 
         assertNotEquals(null, movie1);
         assertNotEquals(movie1, new Object());
@@ -46,6 +49,7 @@ public class MovieTest
         assertThat(movie1, not(movie2));
         assertThat(movie1, not(movie3));
         assertThat(movie1, not(movie4));
+        assertThat(movie1, not(movie5));
     }
 
     @Test
@@ -55,7 +59,7 @@ public class MovieTest
         Movie movie2 = new MovieFixture().build();
         Movie movie3 = new MovieFixture().withTitle("Star Trek").build();
 
-        assertThat(movie1.hashCode(), is(1893890411));
+        assertThat(movie1.hashCode(), is(21718261));
         assertThat(movie1.hashCode(), is(movie2.hashCode()));
         assertThat(movie1.hashCode(), not(movie3.hashCode()));
     }

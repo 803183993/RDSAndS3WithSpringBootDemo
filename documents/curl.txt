@@ -1,0 +1,4 @@
+curl -d "@movie.json" -X POST -H 'Content-type: application/json' http://localhost:5001/rest/movies/add
+curl http://localhost:5001/rest/movies/Star%20Wars
+curl http://localhost:5001/rest/movies/byLetter/D
+curl http://localhost:5001/rest/movies/byYear/1993

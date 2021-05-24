@@ -35,8 +35,8 @@ public class MovieServiceWithSpringTest
     {
         MockitoAnnotations.openMocks(this);
         movie1 = new MovieFixture().build();
-        Movie movie2 = new MovieFixture().withTitle("Deadpool").build();
 
+        Movie movie2 = new MovieFixture().withTitle("Deadpool").build();
         movies = MovieFixture.toDOList(movie1, movie2);
     }
 
@@ -84,6 +84,13 @@ public class MovieServiceWithSpringTest
     {
         when(movieRepository.findMovieByTitle(movie1.getTitle())).thenReturn(MovieDataObject.create(movie1));
         assertThat(movieService.getMovie(movie1.getTitle()).getTitle(), is(movie1.getTitle()));
+    }
+
+    @Test
+    public void canRetrieveMovieWithUnformattedTitle()
+    {
+        when(movieRepository.findMovieByTitle(movie1.getTitle())).thenReturn(MovieDataObject.create(movie1));
+        assertThat(movieService.getMovie(movie1.getTitle().toLowerCase()).getTitle(), is(movie1.getTitle()));
     }
 
     @Test

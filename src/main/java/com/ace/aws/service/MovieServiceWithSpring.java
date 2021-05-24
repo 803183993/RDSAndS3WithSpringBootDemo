@@ -9,6 +9,8 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.ace.aws.common.StringUtilities.capitaliseWords;
+
 @Component
 public class MovieServiceWithSpring implements MovieService
 {
@@ -25,7 +27,7 @@ public class MovieServiceWithSpring implements MovieService
     @Override
     public Movie getMovie(String title)
     {
-        MovieDataObject movieDO = movieRepository.findMovieByTitle(title);
+        MovieDataObject movieDO = movieRepository.findMovieByTitle(capitaliseWords(title));
         return movieDO != null ? movieDO.getMovie() : null;
     }
 

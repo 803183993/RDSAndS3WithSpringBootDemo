@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html>
+<title>Reviews</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<style>
+html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
+.checked {
+  color: orange;
+}
+</style>
+<body class="w3-light-grey">
+
+<!-- Page Container -->
+<div class="w3-content w3-margin-top" style="max-width:1400px;">
+
+    <!-- The Grid -->
+    <div class="w3-row-padding">
+
+        <!-- Left Column -->
+        <div class="w3-third">
+
+            <div class="w3-white w3-text-grey w3-card-4">
+                <div class="w3-display-container">
+                    <img th:src="@{/images/{image}(image=${poster})}" style="width:100%" alt="Movie Poster">
+                </div>
+                <div class="w3-container">
+                    <p><i class="fa fa-film fa-fw w3-margin-right w3-large w3-text-teal"></i>[[${title}]]</p>
+                    <p><i class="fa fa-bullhorn fa-fw w3-margin-right w3-large w3-text-teal"></i>[[${director}]]</p>
+                    <p><i class="fa fa-calendar fa-fw w3-margin-right w3-large w3-text-teal"></i>[[${release}]]</p>
+                </div>
+            </div><br>
+
+            <!-- End Left Column -->
+        </div>
+
+        <!-- Right Column -->
+        <div class="w3-twothird">
+
+            <div class="w3-container w3-card w3-white w3-margin-bottom">
+                <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-newspaper-o fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Reviews</h2>
+                <div class="w3-container">
+                    <h5 class="w3-opacity"><b>Jane Doe</b></h5>
+                    <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>20 January 2015 - <span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span></h6>
+                    <p>Whether a movie is a rotten tomato or a brilliant work of art, if people are watching it, it's worth critiquing. A decent movie review should entertain, persuade and inform, providing an original opinion without giving away too much of the plot. A great movie review can be a work of art in its own right. Read on to learn how to analyze a movie, come up with an interesting thesis and write a review as entertaining as your source material.</p>
+                    <hr>
+                </div>
+                <div class="w3-container">
+                    <h5 class="w3-opacity"><b>Joe Bloggs</b></h5>
+                    <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>20 January 2020 - <span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></h6>
+                    <p>A hung-over law school dropout (Jess Weixler) spends her day doling out free samples of ice cream and attitude while being wooed by the previous night's hook-up.</p>
+                    <hr>
+                </div>
+                <div class="w3-container">
+                    <h5 class="w3-opacity"><b>Add Review</b></h5>
+                    <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>[[${today}]]</h6>
+                    <form action="/ui/movies/addReview" method="post" target="_self">
+                        <input type="text" id="title" name="title" th:value="${title}" hidden>
+                        <table>
+                            <tr><td><input type="text" id="name" name="name" min="1" max="5" size="30"></td></tr>
+                            <tr><td><input type="number" id="rating" name="rating" min="1" max="5"></td></tr>
+                             <tr><td><textarea id="comment" name="comment" cols="30" rows="3"></textarea></td></tr>
+                             <tr><td><input type="submit" value="Submit"></td></tr>
+                        </table>
+                    </form>
+                    <hr>
+                        <h5 class="w3-opacity"><b>[[${result}]]</b></h5>
+                    <hr>
+                </div>
+            </div>
+            <!-- End Right Column -->
+        </div>
+
+        <!-- End Grid -->
+    </div>
+
+    <!-- End Page Container -->
+</div>
+
+<footer class="w3-container w3-teal w3-center w3-margin-top">
+    <p><a href="https://github.com/803183993/RDSAndS3WithSpringBootDemo" target="_blank">Download project from GitHub</a></p>
+    <i class="fa fa-facebook-official w3-hover-opacity"></i>
+    <i class="fa fa-instagram w3-hover-opacity"></i>
+    <i class="fa fa-snapchat w3-hover-opacity"></i>
+    <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+    <i class="fa fa-twitter w3-hover-opacity"></i>
+    <i class="fa fa-linkedin w3-hover-opacity"></i>
+    <p>&#169;Amdad Choudhury</p>
+</footer>
+
+</body>
+</html>

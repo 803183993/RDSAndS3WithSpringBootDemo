@@ -6,13 +6,15 @@ public class Movie
 {
     private final String title;
     private final int release;
-    private final String uri;
+    private final String posterImageFilename;
+    private final String director;
 
-    public Movie(String title, int release, String uri)
+    public Movie(String title, int release, String director, String posterImageFilename)
     {
         this.title = title;
+        this.director = director;
         this.release = release;
-        this.uri = uri;
+        this.posterImageFilename = posterImageFilename;
     }
 
     public String getTitle()
@@ -20,14 +22,19 @@ public class Movie
         return title;
     }
 
+    public String getDirector()
+    {
+        return director;
+    }
+
     public int getRelease()
     {
         return release;
     }
 
-    public String getUri()
+    public String getPosterImageFilename()
     {
-        return uri;
+        return posterImageFilename;
     }
 
     @Override
@@ -45,13 +52,14 @@ public class Movie
         Movie that = (Movie) obj;
         return this.title.equals(that.getTitle())
                 && this.release == that.getRelease()
-                && this.uri.equals(that.getUri());
+                && this.director.equals(that.getDirector())
+                && this.posterImageFilename.equals(that.getPosterImageFilename());
     }
 
     @Override
     public int hashCode()
     {
-        return Objects.hash(title, release, uri);
+        return Objects.hash(title, release, director, posterImageFilename);
     }
 }
 

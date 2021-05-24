@@ -12,10 +12,17 @@ public class MovieFixture
     private static final String S3_URL = "http://s3/MovieBucket";
     private String title = "Death Star";
     private int release = 1977;
+    private String director = "Joe Bloggs";
 
     public MovieFixture withTitle(String title)
     {
         this.title = title;
+        return this;
+    }
+
+    public MovieFixture withDirector(String director)
+    {
+        this.director = director;
         return this;
     }
 
@@ -27,7 +34,7 @@ public class MovieFixture
 
     public Movie build()
     {
-        return new Movie(title, release, format("%s/%s.jpg", S3_URL, title.replaceAll(" ", "")));
+        return new Movie(title, release, director, format("%s/%s.jpg", S3_URL, title.replaceAll(" ", "")));
     }
 
     public static List<MovieDataObject> toDOList(Movie... movies)

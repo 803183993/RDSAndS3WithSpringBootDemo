@@ -1,0 +1,5 @@
+sudo -u postgres psql
+
+create database moviedb;
+create user app1 with password 'password';
+grant all privileges on database moviedb to app1;

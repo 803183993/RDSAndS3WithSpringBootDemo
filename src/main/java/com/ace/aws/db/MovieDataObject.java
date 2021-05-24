@@ -21,20 +21,24 @@ public class MovieDataObject
     @Column(name = "uri")
     private String uri;
 
+    @Column(name = "director")
+    private String director;
+
     public MovieDataObject()
     {
     }
 
-    public MovieDataObject(String title, int release, String uri)
+    public MovieDataObject(String title, int release, String director, String uri)
     {
         this.title = title;
+        this.director = director;
         this.release = release;
         this.uri = uri;
     }
 
     public static MovieDataObject create(Movie movie)
     {
-        return new MovieDataObject(movie.getTitle(), movie.getRelease(), movie.getUri());
+        return new MovieDataObject(movie.getTitle(), movie.getRelease(), movie.getDirector(), movie.getPosterImageFilename());
     }
 
     public String getTitle()
@@ -44,6 +48,6 @@ public class MovieDataObject
 
     public Movie getMovie()
     {
-        return new Movie(title, release, uri);
+        return new Movie(title, release, director, uri);
     }
 }
