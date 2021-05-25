@@ -62,7 +62,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
                     <form action="/ui/movies/addReview" method="post" target="_self">
                         <input type="text" id="title" name="title" th:value="${title}" hidden>
                         <table>
-                            <tr><td><input type="text" id="name" name="name" min="1" max="5" size="30"></td></tr>
+                            <tr><td><input type="text" id="reviewer" name="reviewer" min="1" max="5" size="30"></td></tr>
                             <tr><td><input type="number" id="rating" name="rating" min="1" max="5"></td></tr>
                              <tr><td><textarea id="comment" name="comment" cols="30" rows="3"></textarea></td></tr>
                              <tr><td><input type="submit" value="Submit"></td></tr>

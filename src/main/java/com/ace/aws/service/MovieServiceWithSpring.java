@@ -3,6 +3,7 @@ package com.ace.aws.service;
 import com.ace.aws.db.MovieDataObject;
 import com.ace.aws.db.MovieRepository;
 import com.ace.aws.domain.Movie;
+import com.ace.aws.domain.Review;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -22,6 +23,12 @@ public class MovieServiceWithSpring implements MovieService
     public void addMovie(Movie movie)
     {
         movieRepository.addMovie(movie);
+    }
+
+    @Override
+    public void addReview(Review review)
+    {
+        movieRepository.addReview(review);
     }
 
     @Override

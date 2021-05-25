@@ -19,6 +19,17 @@ public class MovieApplication
                     .withProperty("dbPassword", "DB_PASS")
                     .build();
         }
-        SpringApplication.run(MovieApplication.class, args);
+
+        if (System.getProperty("JDBC_URL") != null)
+        {
+            SpringApplication.run(MovieApplication.class, args);
+        }
+        else
+        {
+            System.out.println("========================================");
+            System.out.println("APPLICATION PROPERTIES NOT SET");
+            System.out.println("--hostname localhost --jdbcUrl jdbc:postgresql://localhost:5432/moviedb --dbUsername app1 --dbPassword password");
+            System.out.println("========================================");
+        }
     }
 }

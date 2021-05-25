@@ -1,20 +1,28 @@
 package com.ace.aws.domain;
 
+import java.time.ZonedDateTime;
+
 public class Review
 {
     private String title;
-    private String name;
+    private String reviewer;
     private int rating;
     private String comment;
+    private ZonedDateTime date;
 
     public void setTitle(String title)
     {
         this.title = title;
     }
 
-    public void setName(String name)
+    public void setDate(ZonedDateTime date)
     {
-        this.name = name;
+        this.date = date;
+    }
+
+    public void setReviewer(String reviewer)
+    {
+        this.reviewer = reviewer;
     }
 
     public void setRating(int rating)
@@ -27,9 +35,9 @@ public class Review
         this.comment = comment;
     }
 
-    public String getName()
+    public String getReviewer()
     {
-        return name;
+        return reviewer;
     }
 
     public String getTitle()
@@ -40,6 +48,11 @@ public class Review
     public int getRating()
     {
         return rating;
+    }
+
+    public ZonedDateTime getDate()
+    {
+        return date;
     }
 
     public String getComment()

@@ -1,6 +1,7 @@
 package com.ace.aws.db;
 
 import com.ace.aws.domain.Movie;
+import com.ace.aws.domain.Review;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -55,6 +56,12 @@ public class SpringMovieRepository implements MovieRepository
     {
         entityManager.persist(MovieDataObject.create(movie));
         entityManager.persist(new AuditDataObject("MOVIE", movie.getTitle(), "CREATE", StringUtils.isEmpty(systemHostName) ? "NOT AVAILABLE" : systemHostName));
+    }
+
+    @Override
+    public void addReview(Review review)
+    {
+        entityManager.persist(ReviewDataObject.create(review));
     }
 
     @Override

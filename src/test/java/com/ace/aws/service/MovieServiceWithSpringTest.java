@@ -4,6 +4,8 @@ import com.ace.aws.db.MovieDataObject;
 import com.ace.aws.db.MovieRepository;
 import com.ace.aws.domain.Movie;
 import com.ace.aws.domain.MovieFixture;
+import com.ace.aws.domain.Review;
+import com.ace.aws.domain.ReviewFixture;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
@@ -77,6 +79,13 @@ public class MovieServiceWithSpringTest
     {
         doNothing().when(movieRepository).addMovie(isA(Movie.class));
         movieService.addMovie(movie1);
+    }
+
+    @Test
+    public void canAddReview()
+    {
+        doNothing().when(movieRepository).addReview(isA(Review.class));
+        movieService.addReview(new ReviewFixture().build());
     }
 
     @Test

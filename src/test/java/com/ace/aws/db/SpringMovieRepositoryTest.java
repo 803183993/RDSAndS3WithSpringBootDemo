@@ -2,6 +2,8 @@ package com.ace.aws.db;
 
 import com.ace.aws.domain.Movie;
 import com.ace.aws.domain.MovieFixture;
+import com.ace.aws.domain.Review;
+import com.ace.aws.domain.ReviewFixture;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -46,6 +48,8 @@ public class SpringMovieRepositoryTest
     private Movie deathStar;
     private Movie starTrek;
     private Movie starWars;
+    private Review review1;
+    private Review review2;
 
     @BeforeEach
     public void setUp()
@@ -53,6 +57,8 @@ public class SpringMovieRepositoryTest
         deathStar = new MovieFixture().build();
         starTrek = new MovieFixture().withTitle("Star Trek").withRelease(1974).build();
         starWars = new MovieFixture().withTitle("Star Wars").withRelease(1974).build();
+        review1 = new ReviewFixture().withTitle(starWars.getTitle()).build();
+        review2 = new ReviewFixture().withTitle(starWars.getTitle()).build();
 
         transactionTemplate.setPropagationBehavior(Propagation.REQUIRES_NEW.value());
         transactionTemplate.setIsolationLevel(TransactionDefinition.ISOLATION_SERIALIZABLE);
@@ -103,6 +109,24 @@ public class SpringMovieRepositoryTest
 
         MovieDataObject movie = transactionTemplate.execute(transactionStatus -> movieRepository.findMovieByTitle(deathStar.getTitle()));
         assertEquals(movie.getTitle(), deathStar.getTitle());
+    }
+
+    @Test
+    @SuppressWarnings("ConstantConditions")
+    public void shouldAddReviews()
+    {
+        transactionTemplate.execute(new TransactionCallbackWithoutResult()
+        {
+            @Override
+            protected void doInTransactionWithoutResult(@SuppressWarnings("NullableProblems") TransactionStatus transactionStatus)
+            {
+                movieRepository.addReview(review1);
+                movieRepository.addReview(review2);
+            }
+        });
+
+//        MovieDataObject movie = transactionTemplate.execute(transactionStatus -> movieRepository.findMovieByTitle(deathStar.getTitle()));
+//        assertEquals(movie.getTitle(), deathStar.getTitle());
     }
 
     @Test

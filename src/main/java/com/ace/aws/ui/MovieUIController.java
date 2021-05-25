@@ -23,6 +23,7 @@ public class MovieUIController
     @SuppressWarnings("UnusedDeclaration")
     public String addReview(@ModelAttribute Review review, Model model)
     {
+        movieService.addReview(review);
         populateReviews(review.getTitle(), model);
         model.addAttribute("result", "Review Submitted");
         return "reviews";
