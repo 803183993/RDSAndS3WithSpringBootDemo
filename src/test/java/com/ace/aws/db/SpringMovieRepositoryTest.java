@@ -52,7 +52,7 @@ public class SpringMovieRepositoryTest
     private Review review2;
 
     @BeforeEach
-    public void setUp()
+    public void setup()
     {
         deathStar = new MovieFixture().build();
         starTrek = new MovieFixture().withTitle("Star Trek").withRelease(1974).build();
@@ -72,6 +72,25 @@ public class SpringMovieRepositoryTest
                 movieRepository.addMovie(starWars);
             }
         });
+    }
+
+    @Test
+    public void shouldRetrieveMovieWithReviews()
+    {
+        transactionTemplate.execute(new TransactionCallbackWithoutResult()
+        {
+            @Override
+            protected void doInTransactionWithoutResult(@SuppressWarnings("NullableProblems") TransactionStatus transactionStatus)
+            {
+                movieRepository.addReview(review1);
+                movieRepository.addReview(review2);
+            }
+        });
+        MovieDataObject movieDataObject = transactionTemplate.execute(transactionStatus -> movieRepository.getMovieWithReviews(starWars.getTitle()));
+        assertNotNull(movieDataObject);
+        assertEquals(movieDataObject.getTitle(), starWars.getTitle());
+        Movie reviews = movieDataObject.getMovie();
+        assertEquals(reviews.getReviews().size(), 2);
     }
 
     @Test
@@ -112,7 +131,6 @@ public class SpringMovieRepositoryTest
     }
 
     @Test
-    @SuppressWarnings("ConstantConditions")
     public void shouldAddReviews()
     {
         transactionTemplate.execute(new TransactionCallbackWithoutResult()
@@ -124,9 +142,6 @@ public class SpringMovieRepositoryTest
                 movieRepository.addReview(review2);
             }
         });
-
-//        MovieDataObject movie = transactionTemplate.execute(transactionStatus -> movieRepository.findMovieByTitle(deathStar.getTitle()));
-//        assertEquals(movie.getTitle(), deathStar.getTitle());
     }
 
     @Test

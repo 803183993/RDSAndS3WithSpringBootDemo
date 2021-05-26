@@ -7,7 +7,8 @@ create table movie
     primary key(title)
 );
 
-create table reviews(
+create table reviews
+(
    review_id int GENERATED ALWAYS AS IDENTITY,
    title varchar2(255),
    reviewer varchar2(255) NOT NULL,

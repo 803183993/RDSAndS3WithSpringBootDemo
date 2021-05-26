@@ -1,11 +1,11 @@
 package com.ace.aws.db;
 
 import com.ace.aws.domain.Movie;
+import com.ace.aws.domain.Review;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "movie")
@@ -23,6 +23,10 @@ public class MovieDataObject
 
     @Column(name = "director")
     private String director;
+
+    @OneToMany(mappedBy = "movie", targetEntity = ReviewDataObject.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @SuppressWarnings({"MismatchedQueryAndUpdateOfCollection, FieldMayBeFinal"})
+    private List<ReviewDataObject> reviews = new ArrayList<>();
 
     public MovieDataObject()
     {
@@ -48,6 +52,13 @@ public class MovieDataObject
 
     public Movie getMovie()
     {
-        return new Movie(title, release, director, uri);
+        Movie movie = new Movie(title, release, director, uri);
+        List<Review> retrievedReviews = new ArrayList<>();
+        for (ReviewDataObject review : reviews)
+        {
+            retrievedReviews.add(review.getReview());
+        }
+        movie.setReviews(retrievedReviews);
+        return movie;
     }
 }

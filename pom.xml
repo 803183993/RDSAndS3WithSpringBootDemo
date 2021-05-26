@@ -9,10 +9,10 @@
         <relativePath/>
     </parent>
     <groupId>com.ace.aws</groupId>
-    <artifactId>RdsWithS3Demo</artifactId>
+    <artifactId>RDSAndS3WithSpringBootDemo</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>RdsWithS3Demo</name>
-    <description>A demo with RDS and S3</description>
+    <name>RDSAndS3WithSpringBootDemo</name>
+    <description>A demo with RDS and S3 under Sprint Boot and Hibernate</description>
     <properties>
         <java.version>11</java.version>
     </properties>

@@ -19,6 +19,7 @@ public class ReviewDataObject
     private int reviewId;
 
     @Column(name = "title")
+
     private String title;
 
     @Column(name = "reviewer")
@@ -34,6 +35,11 @@ public class ReviewDataObject
     @Column(name = "review_date", columnDefinition = "TIMESTAMP")
     @SuppressWarnings({"UnusedDeclaration"})
     private ZonedDateTime date;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "title", insertable = false, updatable = false)
+    @SuppressWarnings({"UnusedDeclaration"})
+    private MovieDataObject movie;
 
     @SuppressWarnings({"unused"})
     public ReviewDataObject()

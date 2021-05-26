@@ -6,3 +6,6 @@ INNER JOIN movie
 On reviews.title= movie.title
 WHERE movie.title = 'Star Wars';
 
+
+from review inner join movie on reviews.title= movie.title where movie.title = 'Star Wars';
+

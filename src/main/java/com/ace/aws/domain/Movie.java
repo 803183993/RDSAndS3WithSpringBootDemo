@@ -1,5 +1,6 @@
 package com.ace.aws.domain;
 
+import java.util.List;
 import java.util.Objects;
 
 public class Movie
@@ -8,6 +9,7 @@ public class Movie
     private final int release;
     private final String posterImageFilename;
     private final String director;
+    private List<Review> reviews;
 
     public Movie(String title, int release, String director, String posterImageFilename)
     {
@@ -35,6 +37,16 @@ public class Movie
     public String getPosterImageFilename()
     {
         return posterImageFilename;
+    }
+
+    public List<Review> getReviews()
+    {
+        return reviews;
+    }
+
+    public void setReviews(List<Review> reviews)
+    {
+        this.reviews = reviews;
     }
 
     @Override

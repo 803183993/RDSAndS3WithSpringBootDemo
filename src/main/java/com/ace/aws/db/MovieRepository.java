@@ -17,6 +17,8 @@ public interface MovieRepository
 
     void addReview(Review review);
 
+    MovieDataObject getMovieWithReviews(String title);
+
     List<AuditDataObject> listAllAuditEvents();
 
     List<AuditDataObject> getAuditEntriesByIdentifier(String entityNumber);

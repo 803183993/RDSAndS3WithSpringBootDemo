@@ -65,6 +65,12 @@ public class SpringMovieRepository implements MovieRepository
     }
 
     @Override
+    public MovieDataObject getMovieWithReviews(String title)
+    {
+        return entityManager.find(MovieDataObject.class, title);
+    }
+
+    @Override
     public List<AuditDataObject> listAllAuditEvents()
     {
         TypedQuery<AuditDataObject> listAllAudits = entityManager.createNamedQuery("listAllAudits", AuditDataObject.class);
