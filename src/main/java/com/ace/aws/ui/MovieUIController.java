@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.ZonedDateTime;
+import java.util.List;
 
 import static com.ace.aws.common.StringUtilities.numberToWord;
 import static com.ace.aws.common.StringUtilities.toDayMonthYear;
@@ -35,7 +36,9 @@ public class MovieUIController
     public String getReviews(@RequestParam(name = "title") String title, Model model)
     {
         Movie movie = movieService.getMovieWithReviews(title);
-        model.addAttribute("numberOfReviews", numberToWord(movie.getReviews() == null ? 0 : movie.getReviews().size()));
+        List<Review> reviews = movie.getReviews();
+        model.addAttribute("numberOfReviews", numberToWord(reviews == null ? 0 : reviews.size()));
+        model.addAttribute("reviews", reviews);
         populateReviews(movie, model);
         return "reviews";
     }
