@@ -40,7 +40,7 @@ public class MovieUIControllerTest
     @Test
     public void shouldReturnMessageFromService() throws Exception
     {
-        when(movieService.getMovie(movie.getTitle())).thenReturn(movie);
+        when(movieService.getMovieWithReviews(movie.getTitle())).thenReturn(movie);
         this.mockMvc.perform(get("/ui/movies/?title=Death Star"))
                 .andDo(print())
                 .andExpect(status().isOk())

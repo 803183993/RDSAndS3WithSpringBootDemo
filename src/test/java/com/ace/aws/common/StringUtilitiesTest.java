@@ -4,13 +4,29 @@ import org.junit.Test;
 
 import java.time.ZonedDateTime;
 
-import static com.ace.aws.common.StringUtilities.capitaliseWords;
-import static com.ace.aws.common.StringUtilities.toDayMonthYear;
+import static com.ace.aws.common.StringUtilities.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
 public class StringUtilitiesTest
 {
+    @Test
+    public void shouldConvertNumberToWord()
+    {
+        assertThat(numberToWord(0), is("Zero"));
+        assertThat(numberToWord(1), is("One"));
+        assertThat(numberToWord(2), is("Two"));
+        assertThat(numberToWord(3), is("Three"));
+        assertThat(numberToWord(4), is("Four"));
+        assertThat(numberToWord(5), is("Five"));
+        assertThat(numberToWord(6), is("Six"));
+        assertThat(numberToWord(7), is("Seven"));
+        assertThat(numberToWord(8), is("Eight"));
+        assertThat(numberToWord(9), is("Nine"));
+        assertThat(numberToWord(10), is("Ten"));
+        assertThat(numberToWord(11), is("11"));
+    }
+
     @Test
     public void shouldCapitaliseWordsAndStripSpaces()
     {

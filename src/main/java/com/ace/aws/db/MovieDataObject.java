@@ -40,9 +40,23 @@ public class MovieDataObject
         this.uri = uri;
     }
 
+    private void addReview(ReviewDataObject reviewDataObject)
+    {
+        reviews.add(reviewDataObject);
+    }
+
     public static MovieDataObject create(Movie movie)
     {
-        return new MovieDataObject(movie.getTitle(), movie.getRelease(), movie.getDirector(), movie.getPosterImageFilename());
+        MovieDataObject movieDataObject = new MovieDataObject(movie.getTitle(), movie.getRelease(), movie.getDirector(), movie.getPosterImageFilename());
+        if (movie.getReviews() != null)
+        {
+            for (Review review : movie.getReviews())
+            {
+                movieDataObject.addReview(ReviewDataObject.create(review));
+            }
+        }
+
+        return movieDataObject;
     }
 
     public String getTitle()

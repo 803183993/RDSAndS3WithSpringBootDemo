@@ -39,6 +39,13 @@ public class MovieServiceWithSpring implements MovieService
     }
 
     @Override
+    public Movie getMovieWithReviews(String title)
+    {
+        MovieDataObject movieDO = movieRepository.getMovieWithReviews(capitaliseWords(title));
+        return movieDO != null ? movieDO.getMovie() : null;
+    }
+
+    @Override
     public List<Movie> getMovieByFirstLetterOfTitle(char letter)
     {
         List<MovieDataObject> movieDataObjects = movieRepository.findMoviesByFirstLetterOfTitle(letter);

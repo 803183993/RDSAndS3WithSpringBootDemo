@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.ZonedDateTime;
 
+import static com.ace.aws.common.StringUtilities.numberToWord;
 import static com.ace.aws.common.StringUtilities.toDayMonthYear;
 
 @Controller
@@ -24,7 +25,7 @@ public class MovieUIController
     public String addReview(@ModelAttribute Review review, Model model)
     {
         movieService.addReview(review);
-        populateReviews(review.getTitle(), model);
+        populateReviews(movieService.getMovie(review.getTitle()), model);
         model.addAttribute("result", "Review Submitted");
         return "reviews";
     }
@@ -33,13 +34,14 @@ public class MovieUIController
     @SuppressWarnings("UnusedDeclaration")
     public String getReviews(@RequestParam(name = "title") String title, Model model)
     {
-        populateReviews(title, model);
+        Movie movie = movieService.getMovieWithReviews(title);
+        model.addAttribute("numberOfReviews", numberToWord(movie.getReviews() == null ? 0 : movie.getReviews().size()));
+        populateReviews(movie, model);
         return "reviews";
     }
 
-    private void populateReviews(String title, Model model)
+    private void populateReviews(Movie movie, Model model)
     {
-        Movie movie = movieService.getMovie(title);
         model.addAttribute("title", movie.getTitle());
         model.addAttribute("director", movie.getDirector());
         model.addAttribute("release", movie.getRelease());

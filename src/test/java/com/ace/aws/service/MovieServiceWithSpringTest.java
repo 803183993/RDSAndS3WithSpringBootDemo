@@ -13,6 +13,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -38,8 +39,36 @@ public class MovieServiceWithSpringTest
         MockitoAnnotations.openMocks(this);
         movie1 = new MovieFixture().build();
 
+        Review review1 = new ReviewFixture().withTitle(movie1.getTitle()).build();
+        Review review2 = new ReviewFixture().withTitle(movie1.getTitle()).build();
+
+        movie1.setReviews(new ArrayList<>()
+        {
+            {
+                add(review1);
+                add(review2);
+            }
+        });
+
         Movie movie2 = new MovieFixture().withTitle("Deadpool").build();
         movies = MovieFixture.toDOList(movie1, movie2);
+    }
+
+    @Test
+    public void shouldReturnMoviesWithReviews()
+    {
+        when(movieRepository.getMovieWithReviews(movie1.getTitle())).thenReturn(MovieDataObject.create(movie1));
+        Movie actualMovie = movieService.getMovieWithReviews(movie1.getTitle());
+        assertThat(actualMovie.getTitle(), is(movie1.getTitle()));
+        assertThat(actualMovie.getReviews().size(), is(2));
+    }
+
+    @Test
+    public void shouldReturnNullIfMovieWithReviewsNotFound()
+    {
+        when(movieRepository.getMovieWithReviews("someMovie")).thenReturn(null);
+        Movie actualMovie = movieService.getMovieWithReviews("someMovie");
+        assertThat(actualMovie, nullValue());
     }
 
     @Test

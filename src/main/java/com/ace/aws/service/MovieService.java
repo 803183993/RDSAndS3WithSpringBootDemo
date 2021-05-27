@@ -13,6 +13,8 @@ public interface MovieService
 
     Movie getMovie(String title);
 
+    Movie getMovieWithReviews(String title);
+
     List<Movie> getMovieByFirstLetterOfTitle(char letter);
 
     List<Movie> getMovieByRelease(int year);
