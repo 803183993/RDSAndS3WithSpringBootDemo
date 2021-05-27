@@ -27,7 +27,7 @@ public class MovieUIController
     {
         movieService.addReview(review);
         populateReviews(movieService.getMovie(review.getTitle()), model);
-        model.addAttribute("result", "Review Submitted");
+        model.addAttribute("msg", "Review Submitted");
         return "reviews";
     }
 
