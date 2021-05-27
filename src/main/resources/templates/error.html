@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<title>Spring Boot Demo</title>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<style>
+
+body,h1 {font-family: "Raleway", sans-serif}
+
+body, html {height: 100%}
+
+.bgimg {
+
+  background-image: url('/images/movie-projector.jpg');
+
+  min-height: 100%;
+
+  background-position: center;
+
+  background-size: cover;
+
+}
+
+</style>
+
+<body>
+
+<div class="bgimg w3-display-container w3-animate-opacity w3-text-white">
+
+    <div class="w3-display-topleft w3-padding-large w3-xlarge">
+        AWS Demo with RDS and S3 under Spring Boot
+    </div>
+
+    <div class="w3-display-middle">
+        <h1 class="w3-jumbo w3-animate-top">Review Movies</h1>
+        <hr class="w3-border-grey" style="margin:auto;width:40%">
+        <form action="/ui/movies/" method="get" target="_self">
+            <table>
+                <tr>
+                    <td><input type="text" id="title" name="title" value="Enter Movie Name"></td>
+                    <td><input type="submit" value="Submit"></td>
+                </tr>
+                <tr><h5 class="w3-opacity"><b>[[${msg}]]</b></h5></tr>
+            </table>
+        </form>
+    </div>
+</div>
+
+<footer class="w3-container w3-teal w3-center w3-margin-top">
+    <p><a href="https://github.com/803183993/RDSAndS3WithSpringBootDemo" target="_blank">Download project from GitHub</a></p>
+    <i class="fa fa-facebook-official w3-hover-opacity"></i>
+    <i class="fa fa-instagram w3-hover-opacity"></i>
+    <i class="fa fa-snapchat w3-hover-opacity"></i>
+    <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+    <i class="fa fa-twitter w3-hover-opacity"></i>
+    <i class="fa fa-linkedin w3-hover-opacity"></i>
+    <p>&#169;Amdad Choudhury</p>
+</footer>
+</body>
+</html>

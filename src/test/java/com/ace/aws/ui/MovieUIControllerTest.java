@@ -48,6 +48,16 @@ public class MovieUIControllerTest
     }
 
     @Test
+    public void shouldReturnErrorPageIfMovieNotFound() throws Exception
+    {
+        when(movieService.getMovieWithReviews(movie.getTitle())).thenReturn(null);
+        this.mockMvc.perform(get("/ui/movies/?title=Death Star"))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString(movie.getTitle())));
+    }
+
+    @Test
     @Ignore
     public void shouldAddReview() throws Exception
     {
