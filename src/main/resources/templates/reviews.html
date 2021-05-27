@@ -37,7 +37,13 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
                 <hr>
                 <div class="w3-container" th:each="review : ${reviews}">
                     <h5 class="w3-opacity"><b>[[${review.reviewer}]]</b></h5>
-                    <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i><span th:text="${#temporals.format(review.date,'dd-MMMM-yyyy HH:mm')}"></span>&nbsp;&nbsp;<span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span></h6>
+                    <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i><span th:text="${#temporals.format(review.date,'dd-MMMM-yyyy HH:mm')}">
+                        </span>&nbsp;&nbsp;<span th:class="(${review.rating} > '0' )? 'fa fa-star' : 'fa fa-star-o'"></span>
+                        <span th:class="(${review.rating} > '1' )? 'fa fa-star' : 'fa fa-star-o'"></span>
+                        <span th:class="(${review.rating} > '2' )? 'fa fa-star' : 'fa fa-star-o'"></span>
+                        <span th:class="(${review.rating} > '3' )? 'fa fa-star' : 'fa fa-star-o'"></span>
+                        <span th:class="(${review.rating} > '4' )? 'fa fa-star' : 'fa fa-star-o'"></span>
+                    </h6>
                     <p>[[${review.comment}]]</p>
                     <hr>
                 </div>

@@ -43,11 +43,16 @@ body, html {height: 100%}
         <form action="/ui/movies/" method="get" target="_self">
             <table>
                 <tr>
-                    <td><input type="text" id="title" name="title" value="Enter Movie Name"></td>
+                    <td><input list="movies" id="title" name="title" value="Enter Movie Name"></td>
                     <td><input type="submit" value="Submit"></td>
                 </tr>
-                <tr><h5 class="w3-opacity"><b>[[${msg}]]</b></h5></tr>
+                <tr><h5 class="w3-text-white"><b>[[${msg}]]</b></h5></tr>
             </table>
+            <datalist id="movies">
+                <option value="star trek">
+                <option value="star wars">
+                <option value="Harry potter">
+            </datalist>
         </form>
     </div>
 </div>
