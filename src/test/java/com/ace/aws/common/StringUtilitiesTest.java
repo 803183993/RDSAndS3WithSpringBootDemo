@@ -13,6 +13,7 @@ public class StringUtilitiesTest
     @Test
     public void shouldConvertNumberToWord()
     {
+        assertThat(numberToWord(null), is("Zero"));
         assertThat(numberToWord(0), is("Zero"));
         assertThat(numberToWord(1), is("One"));
         assertThat(numberToWord(2), is("Two"));

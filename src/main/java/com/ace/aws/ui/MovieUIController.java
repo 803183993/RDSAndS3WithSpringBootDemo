@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.ZonedDateTime;
+import java.util.Collections;
 import java.util.List;
 
 import static com.ace.aws.common.StringUtilities.numberToWord;
@@ -38,7 +39,11 @@ public class MovieUIController
         Movie movie = movieService.getMovieWithReviews(title);
         List<Review> reviews = movie.getReviews();
         model.addAttribute("numberOfReviews", numberToWord(reviews == null ? 0 : reviews.size()));
-        model.addAttribute("reviews", reviews);
+        if (reviews != null)
+        {
+            Collections.sort(reviews);
+            model.addAttribute("reviews", reviews);
+        }
         populateReviews(movie, model);
         return "reviews";
     }

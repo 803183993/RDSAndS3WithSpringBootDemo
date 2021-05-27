@@ -27,9 +27,15 @@ public class StringUtilities
     };
 
     // Very simple for now - should use an opensource lib
-    public static String numberToWord(int number)
+    public static String numberToWord(Integer number)
     {
-        return number > 10 ? Integer.toString(number) : NUMBERS_IN_WORDS.get(number);
+        if (number == null)
+        {
+            return "Zero";
+        } else
+        {
+            return number > 10 ? Integer.toString(number) : NUMBERS_IN_WORDS.get(number);
+        }
     }
 
     public static String capitaliseWords(String words)

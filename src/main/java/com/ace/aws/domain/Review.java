@@ -2,7 +2,7 @@ package com.ace.aws.domain;
 
 import java.time.ZonedDateTime;
 
-public class Review
+public class Review implements Comparable<Review>
 {
     private String title;
     private String reviewer;
@@ -58,5 +58,11 @@ public class Review
     public String getComment()
     {
         return comment;
+    }
+
+    @Override
+    public int compareTo(Review that)
+    {
+        return that.date.compareTo(this.date);
     }
 }
