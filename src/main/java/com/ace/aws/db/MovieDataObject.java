@@ -68,9 +68,9 @@ public class MovieDataObject
     {
         Movie movie = new Movie(title, release, director, uri);
         List<Review> retrievedReviews = new ArrayList<>();
-        for (ReviewDataObject review : reviews)
+        for (ReviewDataObject reviewDataObject : reviews)
         {
-            retrievedReviews.add(review.getReview());
+            retrievedReviews.add(reviewDataObject.getReview());
         }
         movie.setReviews(retrievedReviews);
         return movie;

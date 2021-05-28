@@ -9,6 +9,12 @@ public class Review implements Comparable<Review>
     private int rating;
     private String comment;
     private ZonedDateTime date;
+    private String ipAddress;
+
+    public void setIpAddress(String ipAddress)
+    {
+        this.ipAddress = ipAddress;
+    }
 
     public void setTitle(String title)
     {
@@ -48,6 +54,11 @@ public class Review implements Comparable<Review>
     public int getRating()
     {
         return rating;
+    }
+
+    public String getIpAddress()
+    {
+        return ipAddress;
     }
 
     public ZonedDateTime getDate()

@@ -8,9 +8,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.time.ZonedDateTime;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 import static com.ace.aws.common.StringUtilities.*;
 import static java.lang.String.format;
@@ -24,17 +26,23 @@ public class MovieUIController
 
     @PostMapping("/movies/addReview")
     @SuppressWarnings("UnusedDeclaration")
-    public String addReview(@ModelAttribute Review review, Model model)
+    public String addReview(@ModelAttribute Review review, Model model, HttpServletRequest request)
     {
+        String ipAddress = Optional.ofNullable((request.getHeader("X-FORWARDED-FOR"))).orElse(request.getRemoteAddr());
+        review.setIpAddress(ipAddress);
         movieService.addReview(review);
-        populateReviews(movieService.getMovie(review.getTitle()), model);
         model.addAttribute("msg", "Review Submitted");
-        return "reviews";
+        return populateReviews(review.getTitle(), model);
     }
 
     @GetMapping("/movies/")
     @SuppressWarnings("UnusedDeclaration")
     public String getReviews(@RequestParam(name = "title") String title, Model model)
+    {
+        return populateReviews(title, model);
+    }
+
+    private String populateReviews(String title, Model model)
     {
         Movie movie = movieService.getMovieWithReviews(title);
         if (movie == null)
@@ -51,12 +59,12 @@ public class MovieUIController
                 Collections.sort(reviews);
                 model.addAttribute("reviews", reviews);
             }
-            populateReviews(movie, model);
+            populateMovie(movie, model);
             return "reviews";
         }
     }
 
-    private void populateReviews(Movie movie, Model model)
+    private void populateMovie(Movie movie, Model model)
     {
         model.addAttribute("title", movie.getTitle());
         model.addAttribute("director", movie.getDirector());

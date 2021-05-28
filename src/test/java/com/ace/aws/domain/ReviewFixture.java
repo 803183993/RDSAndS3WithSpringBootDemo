@@ -34,6 +34,7 @@ public class ReviewFixture
         review.setComment("some review");
         review.setDate(date);
         review.setRating(2);
+        review.setIpAddress("someIP");
         return review;
     }
 }

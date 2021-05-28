@@ -31,6 +31,9 @@ public class ReviewDataObject
     @Column(name = "comment")
     private String comment;
 
+    @Column(name = "ip_address")
+    private String ipAddress;
+
     @CreationTimestamp
     @Column(name = "review_date", columnDefinition = "TIMESTAMP")
     @SuppressWarnings({"UnusedDeclaration"})
@@ -47,12 +50,13 @@ public class ReviewDataObject
 
     }
 
-    public ReviewDataObject(String title, String reviewer, int rating, String comment)
+    public ReviewDataObject(String title, String reviewer, int rating, String comment, String ipAddress)
     {
         this.title = title;
         this.comment = comment;
         this.reviewer = reviewer;
         this.rating = rating;
+        this.ipAddress = ipAddress;
     }
 
     public int getReviewId()
@@ -68,11 +72,12 @@ public class ReviewDataObject
         review.setComment(comment);
         review.setDate(date);
         review.setRating(rating);
+        review.setIpAddress(ipAddress);
         return review;
     }
 
     public static ReviewDataObject create(Review review)
     {
-        return new ReviewDataObject(review.getTitle(), capitaliseWords(review.getReviewer()), review.getRating(), review.getComment());
+        return new ReviewDataObject(review.getTitle(), capitaliseWords(review.getReviewer()), review.getRating(), review.getComment(), review.getIpAddress());
     }
 }

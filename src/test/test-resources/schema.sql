@@ -11,6 +11,7 @@ create table reviews
 (
    review_id int GENERATED ALWAYS AS IDENTITY,
    title varchar2(255),
+   ip_address varchar2(30),
    reviewer varchar2(255) NOT NULL,
    rating integer,
    comment varchar2(255) NOT NULL,
